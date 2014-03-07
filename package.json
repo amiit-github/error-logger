@@ -1,11 +1,25 @@
 {
-  "name"         : "Error-logging",
-  "version"      : "0.0.1",
-  "description"  : "Log errors encountered during software development.",
-  "main"         : "server.js",
-  "author"       : "amiit-github",
-  "dependencies" : {
-    "express"    : "~3.4.4",
-    "mongoose"   : "~3.6.2"
-  }
+  "name": "Error-logging",
+  "version": "0.0.1",
+  "description": "Log errors encountered during software development.",
+  "main": "server.js",
+  "author": "amiit-github",
+  "dependencies": {
+    "express": "~3.4.4",
+    "mongoose": "~3.6.2",
+    "logfmt": "~0.21.0"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/amiit-github/error-logger.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amiit-github/error-logger/issues"
+  },
+  "homepage": "https://github.com/amiit-github/error-logger"
 }

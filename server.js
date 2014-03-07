@@ -3,13 +3,15 @@ var express  = require('express'),
 	fs = require('fs');
 var app      = express(); 								// create our app w/ express
 var mongoose = require('mongoose'); 					// mongoose for mongodb
-
+var logfmt = require("logfmt");
 app.use(logfmt.requestLogger());
 
 
-// configuration ===============================================================
+// Here we find an appropriate database to connect to, defaulting to
+// localhost if we don't find one.
+var uristring = 'mongodb://localhost/error-log';
+//'mongodb://errorlogger:P1ngraphy@768@ds033469.mongolab.com:33469/errorlogger';
 
-var db = mongoose.connect('mongodb://localhost/error-log');	// connect to mongoDB database on modulus.io
 
 //app.use(express.static('./public'));
 app.configure(function() {
@@ -19,6 +21,16 @@ app.configure(function() {
 	app.use(express.methodOverride()); 						// simulate DELETE and PUT
 });
 
+
+// Makes connection asynchronously.  Mongoose will queue up database
+// operations and release them when the connection is complete.
+mongoose.connect(uristring, function (err, res) {
+  if (err) {
+  console.log ('ERROR connecting to: ' + uristring + '. ' + err);
+  } else {
+  console.log ('Succeeded connected to: ' + uristring);
+  }
+});
 
 // define model ================================================================
 var Log = mongoose.model('Log', {
@@ -106,7 +118,7 @@ var Log = mongoose.model('Log', {
 	});
 
 // listen (start app with node server.js) ======================================
-var port = Number(process.env.PORT || 5000);
+var port = Number(process.env.PORT || 8000);
 app.listen(port, function() {
   console.log("Listening on " + port);
 });

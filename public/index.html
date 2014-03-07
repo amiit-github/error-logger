@@ -134,11 +134,12 @@
         <h4 class="modal-title" id="myModalLabel">{{errlog.title}}</h4>
       </div>
       <div class="modal-body">
-        <p>Solution : {{errlog.description}} </p>
-        <p>Author : {{errlog.author}}</p>
-        <p>Date : {{errlog.date}}</p>
+        <p ng-bind-html-unsafe="errlog.description">Solution : {{errlog.description}}></p>
+        
+	        <p>Author : {{errlog.author}}</p>
+	        <p>Date : {{errlog.date}}</p>
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer" data-content="New line: &lt;br&gt; Hello &lt;p&gt;A Paragraph&lt/p&gt;">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary">Save changes</button>
       </div>

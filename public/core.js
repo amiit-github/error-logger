@@ -16,6 +16,10 @@ function mainController($scope, $http) {
 	$scope.createLog = function() {
 		var d = new Date().getTime();
 		$scope.formData.date = d.toString();
+
+		//preserve newlines in textarea
+		var description = $scope.formData.description;
+		$scope.formData.description = description.replace(/\r?\n/g, '<br />');
 		$http.post('/api/logs', $scope.formData)
 			.success(function(data) {
 				$scope.formData = {}; // clear the form so our user is ready to enter another
